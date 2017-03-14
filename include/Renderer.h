@@ -1,5 +1,14 @@
 #pragma once
-#include <SDL2/SDL.h>
+#ifdef __APPLE__
+#ifdef _SDL2
+// waf
+#include "SDL.h"
+#else
+#include "SDL2/SDL.h"
+#endif
+#else
+#include "SDL.h"
+#endif
 #include "Window.h"
 #include <stdint.h>
 #include "Texture.h"
