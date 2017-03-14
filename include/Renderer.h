@@ -62,6 +62,17 @@ public:
     void draw(Rect& rect, const Color c = Colors::White) const;
 
     void drawLine(const Vec2& a, const Vec2& b, Color c) const;
+
+    void drawLines(const SDL_Point* points, int count);
+
+    template <std::size_t N>
+    inline void drawLines(const std::array<SDL_Point*, N>& points)
+    {
+        drawLines(points.data(), points.size());
+    }
+
+    void drawCircle(const Vec2& pos, float radius, Color col);
+
     void Present() const;
 
     View* GetView() { return &_view; }

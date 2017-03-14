@@ -5,6 +5,8 @@
 #include "Texture.h"
 #include "Vector2f.h"
 
+#include <cmath> // for circle
+
 namespace sdl {
 Texture* Renderer::CreateTexture(const int w, const int h)
 {
@@ -34,7 +36,7 @@ void Renderer::Clear() const { SDL_RenderClear(_ren); }
 
 void Renderer::clear(const Color c) const
 {
-    setRenderColor(c);    
+    setRenderColor(c);
     Clear();
 }
 
@@ -53,6 +55,62 @@ void Renderer::drawLine(const Vec2& a, const Vec2& b, Color c) const
     setRenderColor(c);
     SDL_RenderDrawLine(_ren, a.x(), a.y(), b.x(), b.y());
 }
+
+void Renderer::drawLines(const SDL_Point* points, int count)
+{
+    SDL_RenderDrawLines(_ren, points, count);
+}
+
+void Renderer::drawCircle(const Vec2& pos, float radius, Color col)
+{
+    const double PI  =3.141592653589793238463;
+    const float  PI_F=3.14159265358979f;
+
+    static const unsigned kCircleSegmentsNum	= 72;
+    static const float kCircleTheta 		= 2.0 * PI_F / (float)kCircleSegmentsNum;
+    static const float kCircleTanFactor 	= std::tan(kCircleTheta);
+    static const float kCircleRadFactor 	= std::cos(kCircleTheta);
+
+    // float v[kCircleSegmentsNum * 2];
+    int v[kCircleSegmentsNum * 2];
+
+	float cx = radius;
+	float cy = 0.0f;
+	unsigned vertexIdx = 0;
+
+    auto x = pos.x();
+    auto y = pos.y();
+
+	for(unsigned i = 0; i < kCircleSegmentsNum; ++i, vertexIdx += 2)
+	{
+		// v[vertexIdx] = cx + x;
+		// v[vertexIdx + 1] = cy + y;
+
+		v[vertexIdx] = std::round(cx + x);
+		v[vertexIdx + 1] = std::round(cy + y);
+
+
+		float tx = -cy;
+		float ty = cx;
+
+		cx += tx * kCircleTanFactor;
+		cy += ty * kCircleTanFactor;
+
+		cx *= kCircleRadFactor;
+		cy *= kCircleRadFactor;
+	}
+
+    setRenderColor(col);
+    drawLines((const SDL_Point*)&v[0], kCircleSegmentsNum);
+    
+
+}
+
+// template <std::size_t N>
+// void Renderer::drawLines(const std::array<SDL_Point*, N>& points)
+// {
+//     drawLines(points.data(), point.size());
+// }
 
 void Renderer::setRenderColor(const Color c) const
 {
