@@ -1,5 +1,4 @@
 #pragma once
-
 #ifdef __APPLE__
 #ifdef _SDL2
 // waf
@@ -10,12 +9,15 @@
 #else
 #include "SDL.h"
 #endif
+#include "Color.h"
 #include "Texture.h"
 #include "Util.h"
 #include "View.h"
 #include "Window.h"
 #include <set>
 #include <stdint.h>
+
+// #include <mathfu/vector.h>
 
 namespace sdl {
 class Sprite;
@@ -54,14 +56,30 @@ public:
     Texture* CreateTexture(const std::string& file);
 
     void Clear() const;
+    void clear(const Color c) const;
     void Draw(Sprite& sprite) const;
     void Draw(Text& text) const;
+    void draw(Rect& rect, const Color c = Colors::White) const;
+
+    void drawLine(const Vec2& a, const Vec2& b, Color c) const;
+
+    void drawLines(const SDL_Point* points, int count);
+
+    template <std::size_t N>
+    inline void drawLines(const std::array<SDL_Point*, N>& points)
+    {
+        drawLines(points.data(), points.size());
+    }
+
+    void drawCircle(const Vec2& pos, float radius, Color col);
+
     void Present() const;
 
     View* GetView() { return &_view; }
     void SetView(const View& view) { _view = view; }
 
 private:
+    void setRenderColor(const Color c) const;
     Texture* AddTexture(texture_ptr texture);
 };
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 #ifdef __APPLE__
 #ifdef _SDL2
 // waf
