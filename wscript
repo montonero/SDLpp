@@ -23,7 +23,7 @@ def build(ctx):
     ss = ctx.path.ant_glob('src/*.cpp')
     ctx.stlib(
         target='SDLpp',
-        use = ["SDL2"],
+        use = ["SDL2", "mathfu", "vectorial"],
         # name = 's7static',
         # features='c cstlib',
         cxxflags     = ['-std=c++14'],
