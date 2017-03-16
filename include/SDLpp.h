@@ -1,8 +1,26 @@
 #pragma once
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
-#include <SDL2/SDL_ttf.h>
+#ifdef __APPLE__
+#ifdef _SDL2
+// waf
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#else
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
+#include "SDL2_ttf/SDL_ttf.h"
+#endif
+#else
+
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+
+// #include <SDL2/SDL.h>
+// #include <SDL2/SDL_image.h>
+// #include <SDL2/SDL_ttf.h>
+#endif
 
 #include "Clock.h"
 #include "Duration.h"
@@ -19,13 +37,15 @@
 #include "Window.h"
 
 namespace sdl {
-inline void Quit() {
+inline void Quit()
+{
     IMG_Quit();
     TTF_Quit();
     SDL_Quit();
 }
 
-inline void Init() {
+inline void Init()
+{
     // Initialize sdl
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         throw 0;

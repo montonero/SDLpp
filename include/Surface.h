@@ -1,6 +1,18 @@
 #pragma once
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#ifdef __APPLE__
+#ifdef _SDL2
+// waf
+#include "SDL.h"
+#include <SDL_image.h>
+#else
+#include "SDL2/SDL.h"
+#include "SDL2_Image/SDL_image.h"
+#endif
+#else
+#include "SDL.h"
+#include <SDL_image.h>
+#endif
+
 #include <string>
 #include "Util.h"
 
