@@ -58,7 +58,7 @@ inline void Init()
         throw 0;
     }
 
-#ifdef __EMSCRIPTEN__ + const int image_flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+#ifdef __EMSCRIPTEN__
     const int image_flags = IMG_INIT_PNG;
 #else
     const int image_flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
