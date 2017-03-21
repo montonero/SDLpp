@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Vector2.h"
 
 namespace sdl {
 typedef SDL_Rect Rect;
@@ -12,6 +13,17 @@ inline Rect MakeRect(int x, int y, int w, int h) {
     ret.h = h;
     return ret;
 }
+    
+    inline Rect makeRect(const Vec2& pos, const Vec2& size) {
+        Rect ret;
+        ret.x = pos.x();
+        ret.y = pos.y();
+        ret.w = size.x();
+        ret.h = size.y();
+        return ret;
+    }
+    
+    
 
 inline std::ostream &operator<<(std::ostream &os, const Rect &rect) {
     os << "[" << rect.x << ", "
