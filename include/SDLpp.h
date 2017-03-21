@@ -46,7 +46,7 @@ inline void Quit()
 
 inline void Init()
 {
-    // Initialize sdl
+// Initialize sdl
 #ifdef __EMSCRIPTEN__
     auto errCode = SDL_Init(SDL_INIT_VIDEO);
 #else
@@ -58,17 +58,16 @@ inline void Init()
         throw 0;
     }
 
-    // Initialize sdl_ttf
-    if (TTF_Init() == -1) {
-          std::cout << "TTF_Init failed.\n";
-        throw 1;
-    }
-
-    // Initialize sdl_image
+#ifdef __EMSCRIPTEN__ + const int image_flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+    const int image_flags = IMG_INIT_PNG;
+#else
     const int image_flags = IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF;
+#endif
     const int initialized_flags = IMG_Init(image_flags);
+
     if ((initialized_flags & image_flags) != image_flags) {
         std::cout << "IMG_Init failed.\n";
+        printf("IMG_Init failed %s\n", SDL_GetError());
         throw 2;
     }
 
