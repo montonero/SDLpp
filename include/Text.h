@@ -13,7 +13,7 @@
 #include "SDL2/SDL.h"
 #endif
 #else
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #endif
 
 namespace sdl {

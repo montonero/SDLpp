@@ -8,7 +8,7 @@
 #include "SDL2/SDL.h"
 #endif
 #else
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #endif
 
 #include <string>
@@ -51,6 +51,14 @@ public:
             printf("Could not create window: %s\n", SDL_GetError());
             Throw();
         }
+    }
+
+    Window(Window&& other) {
+        _win = other._win;
+        _renderers = std::move(other._renderers);
+
+        other._win = nullptr;
+        other._renderers.clear();
     }
 
     Window(const Window &other) = delete;
