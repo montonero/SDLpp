@@ -8,7 +8,7 @@
 #include "SDL2/SDL.h"
 #endif
 #else
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #endif
 
 #include <string>
@@ -50,6 +50,14 @@ public:
         if (_win == nullptr) {
             Throw();
         }
+    }
+
+    Window(Window&& other) {
+        _win = other._win;
+        _renderers = std::move(other._renderers);
+
+        other._win = nullptr;
+        other._renderers.clear();
     }
 
     Window(const Window &other) = delete;
