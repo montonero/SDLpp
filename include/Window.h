@@ -48,6 +48,7 @@ public:
                                 width, height,
                                 flags);
         if (_win == nullptr) {
+            printf("Could not create window: %s\n", SDL_GetError());
             Throw();
         }
     }

@@ -37,6 +37,7 @@ public:
     {
         _ren = SDL_CreateRenderer(win, -1, flags);
         if (_ren == nullptr) {
+            printf("Could not create renderer\n");
             Throw();
         }
     }
@@ -58,6 +59,7 @@ public:
     void Clear() const;
     void clear(const Color c) const;
     void Draw(Sprite& sprite) const;
+    
     void Draw(Text& text) const;
     void draw(Rect& rect, const Color c = Colors::White) const;
 
