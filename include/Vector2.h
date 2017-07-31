@@ -1,10 +1,14 @@
 #pragma once
 
-#include <mathfu/vector.h>
+//#include <mathfu/vector.h>
+
+#include <glm/vec2.hpp>
 
 namespace sdl {
 
-using Vec2 = mathfu::Vector<float, 2>;
+//using Vec2 = mathfu::Vector<float, 2>;
+	using Vec2 = glm::vec2;
+
 
 template <typename T>
 class Vector2 {

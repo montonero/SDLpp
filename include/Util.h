@@ -16,7 +16,7 @@ inline Rect MakeRect(int x, int y, int w, int h) {
 
 inline Rect makeRect(const Vec2& pos, const Vec2& size)
 {
-    return MakeRect(pos.x(), pos.y(), size.x(), size.y());
+    return MakeRect(pos.x, pos.y, size.x, size.y);
 }
 
 inline std::ostream &operator<<(std::ostream &os, const Rect &rect) {

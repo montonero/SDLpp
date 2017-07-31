@@ -1,15 +1,8 @@
 #pragma once
 
-#ifdef __APPLE__
-#ifdef _SDL2
-// waf
-#include "SDL.h"
-#else
-#include "SDL2/SDL.h"
-#endif
-#else
-#include <SDL2/SDL.h>
-#endif
+
+#include <SDLpp.h>
+
 
 namespace sdl {
 class Color {
