@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Color.h"
 #include "Texture.h"
 #include "Util.h"
@@ -14,7 +15,7 @@ private:
 
     Vector2f _origin;
     Vector2f _position;
-    Color _color;
+    sdl::Color _color;
     bool _color_set;
 
 public:

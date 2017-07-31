@@ -9,6 +9,7 @@
 #else
 #include "SDL.h"
 #endif
+
 #include "Color.h"
 #include "Texture.h"
 #include "Util.h"
@@ -20,10 +21,12 @@
 // #include <mathfu/vector.h>
 
 namespace sdl {
+    
 class Sprite;
 class Surface;
 class Text;
 class Vector2f;
+    
 class Renderer {
 private:
     typedef std::unique_ptr<Texture> texture_ptr;
@@ -61,7 +64,7 @@ public:
     void Draw(Sprite& sprite) const;
     
     void Draw(Text& text) const;
-    void draw(Rect& rect, const Color c = Colors::White) const;
+    void draw(Rect& rect, const Color c = sdl::Colors::White) const;
 
     void drawLine(const Vec2& a, const Vec2& b, Color c) const;
 

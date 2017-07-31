@@ -53,7 +53,7 @@ void Renderer::draw(Rect& rect, const Color c) const
 void Renderer::drawLine(const Vec2& a, const Vec2& b, Color c) const
 {
     setRenderColor(c);
-    SDL_RenderDrawLine(_ren, a.x(), a.y(), b.x(), b.y());
+    SDL_RenderDrawLine(_ren, a.x, a.y, b.x, b.y);
 }
 
 void Renderer::drawLines(const SDL_Point* points, int count)
@@ -78,8 +78,8 @@ void Renderer::drawCircle(const Vec2& pos, float radius, Color col)
 	float cy = 0.0f;
 	unsigned vertexIdx = 0;
 
-    auto x = pos.x();
-    auto y = pos.y();
+    auto x = pos.x;
+    auto y = pos.y;
 
 	for(unsigned i = 0; i < kCircleSegmentsNum; ++i, vertexIdx += 2)
 	{

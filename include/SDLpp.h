@@ -23,6 +23,7 @@
 #endif
 
 #include "Clock.h"
+#include "Color.h"
 #include "Duration.h"
 #include "Font.h"
 #include "Mouse.h"

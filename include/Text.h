@@ -7,6 +7,8 @@
 
 #include <SDLpp.h>
 
+#include "Color.h"
+
 namespace sdl {
 class View;
 class Text {

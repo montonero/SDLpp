@@ -1,7 +1,26 @@
 #pragma once
 
+#ifdef __APPLE__
+#ifdef _SDL2
+// waf
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+#else
+#include "SDL2/SDL.h"
+#include "SDL2_image/SDL_image.h"
+#include "SDL2_ttf/SDL_ttf.h"
+#endif
+#else
 
-#include <SDLpp.h>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <SDL_ttf.h>
+
+// #include <SDL2/SDL.h>
+// #include <SDL2/SDL_image.h>
+// #include <SDL2/SDL_ttf.h>
+#endif
 
 
 namespace sdl {
