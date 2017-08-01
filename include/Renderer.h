@@ -18,6 +18,8 @@
 #include <set>
 #include <stdint.h>
 
+#include <memory>
+
 // #include <mathfu/vector.h>
 
 namespace sdl {
